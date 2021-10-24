@@ -1,5 +1,6 @@
 import React from 'react';
 import './NavBar.css';
+import CartWdiget from '../CartWidget/CartWidget';
 
 const NavBar = () => {
     return (
@@ -13,6 +14,7 @@ const NavBar = () => {
             <li><a href="#">Tienda</a></li>
             <li><a href="#">Sobre Nosotros</a></li>
             <li><a href="#">Contacto</a></li>
+            <li><CartWdiget /></li>
         </ul>
         <button class="nav-toggler">
             <span></span>
@@ -20,6 +22,7 @@ const NavBar = () => {
         </nav>
     </div>
     </div>
+    
         </div>
     )
 }

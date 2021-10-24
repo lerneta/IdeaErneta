@@ -50,6 +50,7 @@ a.site-logo {
   color: #fff;
   padding: 20px;
   display: block;
+  justify-content: center !important;
   text-decoration: none;
   text-transform: uppercase;
 }
