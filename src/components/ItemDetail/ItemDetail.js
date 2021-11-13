@@ -1,11 +1,12 @@
 import React from 'react';
 
-function ItemDetail(item) {
+function ItemDetail({ item }) {
 
 
+    console.log({ item });
     return (
         <div>
-            {item}
+
 
         </div>
     )

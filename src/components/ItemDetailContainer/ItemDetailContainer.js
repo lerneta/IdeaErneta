@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 const products = [{ id: 1, name: 'Termómetro' }, { id: 2, name: 'Termómetro' }];
 
 const ItemDetailContainer = () => {
-    const { id } = useParams({});
+    const { id } = useParams();
     const [items, setItems] = useState({});
     useEffect(() => {
         const getItems = new Promise((resolve, reject) => {
@@ -18,13 +18,14 @@ const ItemDetailContainer = () => {
         });
         getItems.then((resolve) => {
             setItems(resolve.filter(item => item.id === id))
+            console.log('container', items);
         })
-        console.log('container', items);
+
 
     }, [id]);
     return (
         <div class="container">
-            <ItemDetail item={items} />
+            <ItemDetail item={items[0]} />
         </div>
     )
 }
