@@ -1,10 +1,12 @@
-import React, { useState, useParams, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
+import { useParams } from 'react-router-dom';
+
 
 const products = [{ id: 1, name: 'Termómetro' }, { id: 2, name: 'Termómetro' }];
 
 const ItemDetailContainer = () => {
-    const { id } = useParams();
+    const { id } = useParams({});
     const [items, setItems] = useState({});
     useEffect(() => {
         const getItems = new Promise((resolve, reject) => {
