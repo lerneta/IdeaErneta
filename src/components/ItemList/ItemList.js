@@ -2,7 +2,7 @@ import React from 'react';
 import './ItemList.css';
 import Item from '../Item/Item';
 
-function ItemList(props) {
+function ItemList({ props }) {
 
 
     return (
