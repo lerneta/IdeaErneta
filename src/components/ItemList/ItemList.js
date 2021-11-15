@@ -7,7 +7,7 @@ function ItemList({ props }) {
 
     return (
         <div class="flex">
-            {props.map(u => <Item producto={u.nombre} precio={u.precio} descripcion={u.descripcion} url={u.img} />)}
+            {props.map(u => <Item id={u.id} producto={u.nombre} precio={u.precio} descripcion={u.descripcion} url={u.img} />)}
         </div>
     )
 }
