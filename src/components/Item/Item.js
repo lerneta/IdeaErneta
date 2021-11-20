@@ -6,7 +6,7 @@ function Item({ id, producto, precio, descripcion, url }) {
     return (
         <div>
             <div class="card">
-                <img src={url} alt={producto} />
+                <img class="img" src={url} alt={producto} />
                 <h1><NavLink to={`/item/${id}`} exact> {producto}</NavLink></h1><br />
                 <p class="price">$ {precio}</p><br />
                 <p>{descripcion}</p><br />
