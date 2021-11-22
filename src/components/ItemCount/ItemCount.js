@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './ItemCount.css'
 import { Link } from 'react-router-dom';
+import { useCartConext } from '../../Context/CartContext';
 
 function ItemCount({ stock, initial, onAdd }) {
 
     const [cantidad, setcantidad] = useState(initial);
+    const { addItem, remover, clearCart } = useCartConext;
 
     const sumaritem = () => {
         if (cantidad < stock) {
@@ -21,8 +23,8 @@ function ItemCount({ stock, initial, onAdd }) {
     }
     const agregar = () => {
         onAdd = cantidad;
-
     }
+
 
 
 

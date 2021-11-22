@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Cart from './Pages/Cart';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import CartProvider from './Context/CartContext';
 
 function App() {
+
   return (
     <div className="App">
       <header>
@@ -18,7 +21,9 @@ function App() {
             <ItemListContainer greeting={'Hola Soy Lu Erneta'} />
           </Route>
           <Route path="/item/:id">
-            <ItemDetailContainer />
+            <CartProvider>
+              <ItemDetailContainer />
+            </CartProvider>
           </Route>
           <Route path="/cart/:mount">
             <Cart />
