@@ -14,25 +14,27 @@ function App() {
     <div className="App">
       <header>
       </header>
-      <BrowserRouter>
-        <NavBar />
-        <Switch>
-          <Route exact path="/">
-            <ItemListContainer greeting={'Hola Soy Lu Erneta'} />
-          </Route>
-          <Route path="/item/:id">
-            <CartProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Switch>
+            <Route exact path="/">
+              <ItemListContainer greeting={'Hola Soy Lu Erneta'} />
+            </Route>
+            <Route path="/item/:id">
+
               <ItemDetailContainer />
-            </CartProvider>
-          </Route>
-          <Route path="/cart/:mount">
-            <Cart />
-          </Route>
-          <Route path="/categorias">
-            <ItemListContainer greeting={'Hola Soy Lu Erneta'} />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+
+            </Route>
+            <Route path="/cart/:mount">
+              <Cart />
+            </Route>
+            <Route path="/categorias">
+              <ItemListContainer greeting={'Hola Soy Lu Erneta'} />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </CartProvider>
     </div>
   );
 }

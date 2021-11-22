@@ -3,6 +3,7 @@ import { useCartConext } from '../../Context/CartContext';
 import ItemCount from '../ItemCount/ItemCount';
 import './ItemDetail.css';
 
+
 function ItemDetail({ item }) {
     const { addItem, remover, clearCart } = useCartConext;
     console.log("mensaje", item)
