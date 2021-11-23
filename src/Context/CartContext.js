@@ -1,13 +1,21 @@
 import React, { useContext, createContext, useState } from "react";
 export const CartContext = createContext();
-export const useCartConext = () => useContext(CartContext);
+export const useCartContext = () => useContext(CartContext);
 
 
-const CartProvider = ({ Children }) => {
+const CartProvider = ({ children }) => {
+
+    const [cantidad, setcantidad] = useState(1);
+    const [valor, setValor] = useState({});
 
     const [cart, setCart] = useState([]);
-    const addItem = (id, cantidad) => {
-        console.log("agregado");
+    const addItem = (id, nombre) => {
+        if (isInCart(id)) {
+            console.log("No se puede seleccionar este producto!")
+
+        } else {
+            setCart([...cart, { id, nombre, cantidad }])
+        }
     }
     const remover = (id) => {
         setCart(
@@ -17,8 +25,21 @@ const CartProvider = ({ Children }) => {
     const clearCart = () => (
         setCart([])
     )
-    return <CartContext.Provider value={{ addItem, remover, clearCart }}>
-        {Children}
+
+
+    const configcantidad = (dato) => {
+        setcantidad(dato);
+    }
+
+    const isInCart = (id) => {
+        return cart.some(cartitem => cartitem.id === id);
+
+    }
+
+    console.log("valor", cart);
+
+    return <CartContext.Provider value={{ addItem, remover, clearCart, configcantidad }}>
+        {children}
     </CartContext.Provider>
 }
 

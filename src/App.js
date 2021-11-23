@@ -22,11 +22,9 @@ function App() {
               <ItemListContainer greeting={'Hola Soy Lu Erneta'} />
             </Route>
             <Route path="/item/:id">
-
               <ItemDetailContainer />
-
             </Route>
-            <Route path="/cart/:mount">
+            <Route path="/cart/">
               <Cart />
             </Route>
             <Route path="/categorias">

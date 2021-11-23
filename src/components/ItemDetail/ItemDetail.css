@@ -18,3 +18,27 @@ img {
 .precio{
     font-size: 35px;
 }
+
+.cartel{
+    width:110%;
+    height: 100vh;
+    left: -10px;
+    background: rgba(0, 0, 0, 0.7);
+    position:fixed;
+}
+
+.cartel2{
+    width:40%;
+    background: white;
+    margin: 0 auto 0 auto;
+
+}
+
+.buton{
+    background: gray;
+    color: white;
+    width: 50% !important;
+    margin: 0 auto 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

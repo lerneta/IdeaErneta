@@ -15,7 +15,7 @@ const NavBar = () => {
                             <li><Link to="/categorias/1">Sensores</Link></li>
                             <li><Link to="/categorias/2">Aditivos</Link></li>
                             <li><Link to="/categorias/3">Accesorios</Link></li>
-                            <li><CartWdiget /></li>
+                            <li><Link to="/cart/"><CartWdiget /></Link></li>
                         </ul>
                         <button class="nav-toggler">
                             <span></span>
