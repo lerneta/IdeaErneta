@@ -1,10 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { CartContext, useCartContext } from '../Context/CartContext';
 import './css/Cart.css';
 import { Link } from 'react-router-dom';
 
 export default function Cart() {
-    const { addItem, remover, clearCart } = useCartContext(CartContext);
+
+    const { devolvervalores, remover } = useCartContext(CartContext);
+
+    const [productos, setproductos] = useState([])
+    const [amount, setamount] = useState(0)
+
+    useEffect(() => {
+        setproductos(devolvervalores);
+
+
+        let sum = 0;
+        for (var i = 0; i < productos.length; i++) {
+            sum += productos[i].precio * productos[i].cantidad;
+        }
+        setamount(sum);
+        actualizar(0);
+    }, []);
+
+
+    const actualizar = (id) => {
+        if (id > 0) {
+            remover(id);
+            console.log("hola");
+        }
+        setproductos(devolvervalores);
+        let sum = 0;
+        for (var i = 0; i < productos.length; i++) {
+            sum += productos[i].precio * productos[i].cantidad;
+        }
+        setamount(sum);
+    }
+
+    console.log("productos", productos);
+
+
     return (
         <div>
             <div class="wrap cf">
@@ -15,30 +49,31 @@ export default function Cart() {
                 <div class="cart">
 
                     <ul class="cartWrap">
-                        <li class="items odd">
 
-                            <div class="infoWrap">
-                                <div class="cartSection">
-                                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_935880-MLA44091055445_112020-F.jpg" alt="" class="itemImg" />
-                                    <p class="itemNumber">#QUE-007544-002</p>
-                                    <h3>Item Name 1</h3>
+                        {productos != undefined || productos != [] ? productos.map(u =>
+                            <li class="items odd">
+                                <div class="infoWrap">
+                                    <div class="cartSection">
+                                        <img src={u.img} alt="" class="itemImg" />
+                                        <p class="itemNumber">{u.id}</p>
+                                        <h3>{u.nombre}</h3>
 
-                                    <p> <input type="text" class="qty" placeholder="3" /> x $5.00</p>
+                                        <p> <input type="text" class="qty" /> Cantidad: {u.cantidad + 1}</p>
 
-                                    <p class="stockStatus"> In Stock</p>
+                                        <p class="stockStatus"> In Stock</p>
+                                    </div>
+
+
+                                    <div class="prodTotal cartSection">
+                                        <p>$ {u.precio * (u.cantidad + 1)}</p>
+                                    </div>
+                                    <div class="cartSection removeWrap">
+                                        <input onClick={() => actualizar(u.id)} type="button" value="Remover" class="agregar" />
+                                    </div>
                                 </div>
+                            </li>
 
-
-                                <div class="prodTotal cartSection">
-                                    <p>$15.00</p>
-                                </div>
-                                <div class="cartSection removeWrap">
-                                    <a href="#" class="remove">x</a>
-                                </div>
-                            </div>
-                        </li>
-
-
+                        ) : "No hay productos :("}
 
 
 
@@ -47,12 +82,8 @@ export default function Cart() {
 
                 <div class="subtotal cf">
                     <ul>
-                        <li class="totalRow"><span class="label">Subtotal</span><span class="value">$35.00</span></li>
 
-                        <li class="totalRow"><span class="label">Envío</span><span class="value">$5.00</span></li>
-
-                        <li class="totalRow"><span class="label">Impuestos</span><span class="value">$4.00</span></li>
-                        <li class="totalRow final"><span class="label">Total</span><span class="value">$44.00</span></li>
+                        <li class="totalRow final"><span class="label">Total</span><span class="value">$ {amount}</span></li>
                         <li class="totalRow"><a href="#" class="btn continue">Comprar</a></li>
                     </ul>
                 </div>

@@ -3,8 +3,6 @@ import { CartContext, useCartContext } from '../../Context/CartContext';
 import ItemCount from '../ItemCount/ItemCount';
 import './ItemDetail.css';
 
-import { Link } from 'react-router-dom';
-
 
 function ItemDetail({ item }) {
     const { addItem, remover, clearCart } = useCartContext(CartContext);
@@ -24,7 +22,7 @@ function ItemDetail({ item }) {
     }
 
     const abrirventana = () => {
-        addItem(item[0].id, item[0].name);
+        addItem(item[0].id, item[0].name, item[0].img, item[0].price);
         aparecer();
     }
 

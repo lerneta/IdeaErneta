@@ -6,18 +6,19 @@ export const useCartContext = () => useContext(CartContext);
 const CartProvider = ({ children }) => {
 
     const [cantidad, setcantidad] = useState(1);
-    const [valor, setValor] = useState({});
+
 
     const [cart, setCart] = useState([]);
-    const addItem = (id, nombre) => {
+    const addItem = (id, nombre, img, precio) => {
         if (isInCart(id)) {
             console.log("No se puede seleccionar este producto!")
 
         } else {
-            setCart([...cart, { id, nombre, cantidad }])
+            setCart([...cart, { id, nombre, cantidad, img, precio }])
         }
     }
     const remover = (id) => {
+        console.log("llego")
         setCart(
             cart.filter(item => item.id !== id)
         )
@@ -33,12 +34,15 @@ const CartProvider = ({ children }) => {
 
     const isInCart = (id) => {
         return cart.some(cartitem => cartitem.id === id);
+    }
 
+    const devolvervalores = () => {
+        return cart;
     }
 
     console.log("valor", cart);
 
-    return <CartContext.Provider value={{ addItem, remover, clearCart, configcantidad }}>
+    return <CartContext.Provider value={{ addItem, remover, clearCart, configcantidad, devolvervalores }}>
         {children}
     </CartContext.Provider>
 }
