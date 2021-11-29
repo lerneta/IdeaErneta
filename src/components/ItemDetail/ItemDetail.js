@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CartContext, useCartContext } from '../../Context/CartContext';
 import ItemCount from '../ItemCount/ItemCount';
 import './ItemDetail.css';
+import { Link } from 'react-router-dom';
 
 
 function ItemDetail({ item }) {
@@ -54,8 +55,7 @@ function ItemDetail({ item }) {
                 <br /><br />
                 <ItemCount stock={item[0].stock} initial={1} />
                 <input onClick={() => aparecer()} type="button" value="Agregar" class="agregar" />
-                <input onClick={() => remover(item[0].id)} type="button" value="Remover" class="agregar" />
-                <input onClick={() => clearCart()} type="button" value="Limpiar Carrito" class="agregar" />
+                <Link to="/cart/"><input type="button" value="Terminar compra" class="agregar" /></Link>
 
             </div>
 

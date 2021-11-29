@@ -6,6 +6,7 @@ export const useCartContext = () => useContext(CartContext);
 const CartProvider = ({ children }) => {
 
     const [cantidad, setcantidad] = useState(1);
+    const [amount, setamount] = useState(0);
 
 
     const [cart, setCart] = useState([]);
@@ -23,6 +24,12 @@ const CartProvider = ({ children }) => {
             cart.filter(item => item.id !== id)
         )
     }
+
+    const removeItem = (itemId) => {
+        const deleteProduct = cart.filter(item => item.id !== itemId);
+        setCart([...deleteProduct])
+    }
+
     const clearCart = () => (
         setCart([])
     )
@@ -40,9 +47,19 @@ const CartProvider = ({ children }) => {
         return cart;
     }
 
+
+    const totalPrice = () => {
+
+
+        const sumall = cart.map(item => item.precio * item.cantidad).reduce((prev, curr) => prev + curr, 0);
+        setamount(sumall);
+
+        return amount;
+    }
+
     console.log("valor", cart);
 
-    return <CartContext.Provider value={{ addItem, remover, clearCart, configcantidad, devolvervalores }}>
+    return <CartContext.Provider value={{ addItem, remover, removeItem, clearCart, configcantidad, devolvervalores, cart, totalPrice }}>
         {children}
     </CartContext.Provider>
 }
