@@ -7,7 +7,6 @@ import { getFirestore } from "../../firebase/firebase";
 
 const ItemDetailContainer = () => {
     const { detailId } = useParams();
-
     const [detail, setDetail] = useState('');
 
 
@@ -15,7 +14,7 @@ const ItemDetailContainer = () => {
         getItems(detailId).then((resultado) => {
             console.log("resutado", resultado.data())
             if (resultado.exists) {
-                setDetail(<ItemDetail item={resultado.data()} />)
+                setDetail(<ItemDetail id={detailId} item={resultado.data()} />)
                 console.log("detalle", resultado.data())
             }
         });

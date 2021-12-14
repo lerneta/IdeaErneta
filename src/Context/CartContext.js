@@ -7,13 +7,10 @@ const CartProvider = ({ children }) => {
 
     const [cantidad, setcantidad] = useState(1);
     const [amount, setamount] = useState(0);
-
-
     const [cart, setCart] = useState([]);
     const addItem = (id, nombre, img, precio) => {
         if (isInCart(id)) {
             console.log("No se puede seleccionar este producto!")
-
         } else {
             setCart([...cart, { id, nombre, cantidad, img, precio }])
         }

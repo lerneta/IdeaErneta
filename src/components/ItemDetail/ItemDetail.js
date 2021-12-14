@@ -5,7 +5,7 @@ import './ItemDetail.css';
 import { Link } from 'react-router-dom';
 
 
-function ItemDetail({ item }) {
+function ItemDetail({ id, item }) {
     const { addItem, remover, clearCart } = useCartContext(CartContext);
     const [Visibilidad, setVisibilidad] = useState("");
 
@@ -23,7 +23,7 @@ function ItemDetail({ item }) {
     }
 
     const abrirventana = () => {
-        addItem(item.id, item.title, item.imageId, item.price);
+        addItem(id, item.title, item.imageId, item.price);
         aparecer();
     }
 
