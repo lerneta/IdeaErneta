@@ -4,10 +4,12 @@ import Item from '../Item/Item';
 
 function ItemList({ props }) {
 
+    console.log("props", props);
+
 
     return (
         <div class="flex">
-            {props.map(u => <Item id={u.id} producto={u.nombre} precio={u.precio} descripcion={u.descripcion} url={u.img} />)}
+            {props.map(u => <Item props={u} />)}
         </div>
     )
 }

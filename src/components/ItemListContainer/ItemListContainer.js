@@ -1,37 +1,52 @@
-import React from 'react';
-import ItemList from '../ItemList/ItemList';
-
-const ItemListContainer = ({ greeting }) => {
-    const producto = [
-        { id: 1, nombre: 'Temporizador', precio: 1500, descripcion: 'Descripcion', img: 'https://http2.mlstatic.com/D_NQ_NP_2X_935880-MLA44091055445_112020-F.jpg' },
-        { id: 2, nombre: 'Termohigrómetro', precio: 550, descripcion: 'Descripcion', img: 'https://http2.mlstatic.com/D_NQ_NP_2X_754680-MLA44811062293_022021-F.webp' },
-        { id: 3, nombre: 'Difusor', precio: 530, descripcion: 'Descripcion', img: 'https://http2.mlstatic.com/D_NQ_NP_2X_652786-MLA45538600602_042021-F.webp' }
-    ]
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import ItemList from '../../components/ItemList/ItemList';
+import { getFirestore } from "../../firebase/firebase";
 
 
-    const task = new Promise((resolve, reject) => {
-        const condition = true
-        if (condition) {
-            setTimeout(() => {
-                resolve(producto);
-            }, 2000)
+const ItemListContainer = () => {
+
+    const [items, setItems] = useState([]);
+    const { categoryId } = useParams();
+
+    useEffect(() => {
+        const db = getFirestore();
+        const itemsCollection = db.collection("items");
+
+        if (categoryId) {
+            const filter = itemsCollection.where("categoryId", "==", categoryId);
+            const promFilter = filter.get();
+
+            promFilter.then((snapshot) => {
+                if (snapshot.size > 0) {
+                    setItems(
+                        snapshot.docs.map((doc) => {
+                            return { id: doc.id, ...doc.data() };
+                        })
+                    );
+                }
+            });
         } else {
-            reject('404 not found')
-        };
-    });
+            const prom = itemsCollection.get();
+            prom.then((snapshot) => {
+                if (snapshot.size > 0) {
+                    setItems(
+                        snapshot.docs.map((doc) => {
+                            return { id: doc.id, ...doc.data() };
+                        })
+                    );
+                }
+            });
+        }
+    }, [categoryId]);
 
-    task.then(result => {
-        console.log(result);
-    })
+
 
     return (
-        <div>
-            <br />
-            <ItemList props={producto} />
-
-        </div>
-    )
+        <main className="columna-principal">
+            <ItemList props={items} />
+        </main>
+    );
 }
 
-export default ItemListContainer
-
+export default ItemListContainer;

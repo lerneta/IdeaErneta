@@ -23,11 +23,11 @@ function ItemDetail({ item }) {
     }
 
     const abrirventana = () => {
-        addItem(item[0].id, item[0].name, item[0].img, item[0].price);
+        addItem(item.id, item.title, item.imageId, item.price);
         aparecer();
     }
 
-
+    console.log(item)
 
     return (
 
@@ -45,15 +45,15 @@ function ItemDetail({ item }) {
             ) : (
                 <div></div>
             )}
-            <img src={item[0].img} />
+            <img src={'https://http2.mlstatic.com/' + item.imageId} />
             <div class="textos">
-                <h2>{item[0].name}</h2>
+                <h2>{item.title}</h2>
                 <br />
-                <p class="precio">$ {item[0].price}</p>
+                <p class="precio">$ {item.price}</p>
                 <br />
-                <p>{item[0].description}</p>
+                <p>{item.description}</p>
                 <br /><br />
-                <ItemCount stock={item[0].stock} initial={1} />
+                <ItemCount stock={item.stock} initial={1} />
                 <input onClick={() => aparecer()} type="button" value="Agregar" class="agregar" />
                 <Link to="/cart/"><input type="button" value="Terminar compra" class="agregar" /></Link>
 

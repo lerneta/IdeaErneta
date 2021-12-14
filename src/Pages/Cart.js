@@ -22,7 +22,7 @@ export default function Cart() {
                             <li class="items odd">
                                 <div class="infoWrap">
                                     <div class="cartSection">
-                                        <img src={u.img} alt="" class="itemImg" />
+                                        <img src={'https://http2.mlstatic.com/' + u.img} alt="" class="itemImg" />
                                         <p class="itemNumber">{u.id}</p>
                                         <h3>{u.nombre}</h3>
                                         <p> <input type="text" class="qty" /> Cantidad: {u.cantidad + 1}</p>

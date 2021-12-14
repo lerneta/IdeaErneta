@@ -1,15 +1,15 @@
 import React from 'react';
 import './Item.css';
 import { NavLink } from 'react-router-dom';
-function Item({ id, producto, precio, descripcion, url }) {
-
+function Item({ props }) {
+    console.log("item", props)
     return (
         <div>
             <div class="card">
-                <img class="img" src={url} alt={producto} />
-                <h1><NavLink to={`/item/${id}`} exact> {producto}</NavLink></h1><br />
-                <p class="price">$ {precio}</p><br />
-                <p>{descripcion}</p><br />
+                <img class="img" src={'https://http2.mlstatic.com/' + props.imageId} alt={props.title} />
+                <h1><NavLink to={`/item/${props.id}`} exact> {props.title}</NavLink></h1><br />
+                <p class="price">$ {props.price}</p><br />
+                <p>{props.description}</p><br />
                 <p><button>Agregar al carrito</button></p>
             </div>
         </div >
